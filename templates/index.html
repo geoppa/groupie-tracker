@@ -1,21 +1,45 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <link rel="stylesheet" href="/static/css/style.css">
+    
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   
     <title>Groupie Tracker</title>
-    <style>
-        body { font-family: Arial, sans-serif; background-color: #f4f4f9; margin: 0; padding: 20px; }
-        h1 { text-align: center; color: #333; }
-        .container { display: flex; flex-wrap: wrap; justify-content: center; gap: 20px; }
-        .card { background: white; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); width: 200px; padding: 15px; text-align: center; }
-        .card img { width: 100%; border-radius: 4px; }
-        .card h3 { margin: 10px 0 5px 0; color: #222; }
-        .card p { font-size: 14px; color: #666; margin: 0; }
-    </style>
 </head>
 <body>
 
+   <header class="site-header">
+    <div class="site-brand">
+        <a href="/">Groupie Tracker</a>
+    </div>
+
+    <nav>
+        <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="#">About</a></li>
+        </ul>
+    </nav>
+
+    <div class="user-controls">
+        <div class="theme-selector">
+            <button type="button" class="theme-button theme-modern">
+                <span class="theme-dot" aria-hidden="true"></span>
+                <span class="theme-name">Modern</span>
+            </button>
+            <button type="button" class="theme-button theme-inferno">
+                <span class="theme-dot" aria-hidden="true"></span>
+                <span class="theme-name">Inferno</span>
+            </button>
+            <button type="button" class="theme-button theme-neon">
+                <span class="theme-dot" aria-hidden="true"></span>
+                <span class="theme-name">Neon</span>
+            </button>
+        </div>
+    </div>
+</header>
+   
     <h1>🎤 Groupie Tracker 🎤</h1>
     
     <div class="container">
@@ -30,5 +54,6 @@
         {{end}}
     </div>
 
+    <script src="/static/js/theme.js" defer></script>
 </body>
 </html>
