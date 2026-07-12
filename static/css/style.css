@@ -1,0 +1,80 @@
+.site-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+}
+
+.site-header nav ul {
+    display: flex;
+    gap: 24px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.site-brand a {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: inherit;
+    text-decoration: none;
+}
+
+.brand-name {
+    font-size: 1.25rem;
+    font-weight: 700;
+}
+
+.brand-icon {
+    width: 24px;
+    height: 36px;
+    flex-shrink: 0;
+    color: #008f8c;
+}
+
+.theme-selector {
+    display: flex;
+    gap: 12px;
+}
+
+.theme-button {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    border: 1px solid;
+    padding: 8px 12px;
+    border-radius: 8px;
+    background: transparent;
+    cursor: pointer;
+}
+
+.theme-button:hover {
+    border-color: #008f8c;
+    box-shadow: 0 0 0 2px rgba(0, 143, 140, 0.2);
+}
+
+.theme-button:focus-visible {
+    outline: 3px solid #008f8c;
+    outline-offset: 3px;
+}
+
+.theme-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: gray;
+}
+
+.theme-modern .theme-dot {
+    background-color: turquoise;
+}
+
+.theme-inferno .theme-dot {
+    background-color: crimson;
+}
+
+.theme-neon .theme-dot {
+    background-color: violet;
+}
+
