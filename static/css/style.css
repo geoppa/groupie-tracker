@@ -1,80 +1,214 @@
-.site-header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 24px;
-}
+/* ==========================================================
+   RESET
+========================================================== */
 
-.site-header nav ul {
-    display: flex;
-    gap: 24px;
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
     margin: 0;
     padding: 0;
-    list-style: none;
 }
 
-.site-brand a {
-    display: flex;
-    align-items: center;
-    gap: 8px;
+/* ==========================================================
+   DESIGN TOKENS
+========================================================== */
+
+:root {
+    --font-family: "Inter", Arial, sans-serif;
+
+    --container-width: 1400px;
+
+    --border-radius: 12px;
+
+    --transition-speed: 250ms;
+}
+
+/* ==========================================================
+   THEME 1: MODERN
+========================================================== */
+
+html[data-theme="modern"] {
+    --color-background: #071011;
+    --color-surface: #0d1819;
+    --color-surface-elevated: #132224;
+
+    --color-text-primary: #f4f7f7;
+    --color-text-secondary: #b8c4c4;
+
+    --color-accent: #16c7c9;
+    --color-accent-secondary: #16c7c9;
+    --color-accent-hover: #39dfe1;
+
+    --color-border: #355052;
+    --color-focus: #7ffcff;
+}
+
+
+/* ==========================================================
+   THEME 2: INFERNO
+========================================================== */
+
+html[data-theme="inferno"] {
+    --color-background: #0d0502;
+    --color-surface: #170805;
+    --color-surface-elevated: #24100a;
+
+    --color-text-primary: #fff7f2;
+    --color-text-secondary: #d6bcb2;
+
+    --color-accent: #ff3b18;
+    --color-accent-secondary: #16c7c9;
+    --color-accent-hover: #ff6a22;
+
+    --color-border: #6f2514;
+    --color-focus: #ffb000;
+}
+
+
+/* ==========================================================
+   THEME 3: NEON
+========================================================== */
+
+html[data-theme="neon"] {
+    --color-background: #040617;
+    --color-surface: #090c25;
+    --color-surface-elevated: #101538;
+
+    --color-text-primary: #f7f4ff;
+    --color-text-secondary: #bdb7d8;
+
+    --color-accent: #d92cff;
+    --color-accent-secondary: #00d9ff;
+    --color-accent-hover: #ef6cff;
+
+    --color-border: #49256d;
+    --color-focus: #00f0ff;
+}
+
+/* ==========================================================
+   GLOBAL ELEMENTS
+========================================================== */
+
+body {
+    min-height: 100vh;
+
+    font-family: var(--font-family);
+
+    background-color: var(--color-background);
+
+    color: var(--color-text-primary);
+
+    line-height: 1.5;
+
+    transition:
+        background-color var(--transition-speed),
+        color var(--transition-speed);
+}
+
+a {
     color: inherit;
+
     text-decoration: none;
 }
 
-.brand-name {
-    font-size: 1.25rem;
-    font-weight: 700;
-}
+button {
+    font: inherit;
 
-.brand-icon {
-    width: 24px;
-    height: 36px;
-    flex-shrink: 0;
-    color: #008f8c;
-}
+    color: inherit;
 
-.theme-selector {
-    display: flex;
-    gap: 12px;
-}
+    background: none;
 
-.theme-button {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    border: 1px solid;
-    padding: 8px 12px;
-    border-radius: 8px;
-    background: transparent;
+    border: none;
+
     cursor: pointer;
 }
 
-.theme-button:hover {
-    border-color: #008f8c;
-    box-shadow: 0 0 0 2px rgba(0, 143, 140, 0.2);
+img,
+svg {
+    display: block;
+
+    max-width: 100%;
 }
 
-.theme-button:focus-visible {
-    outline: 3px solid #008f8c;
-    outline-offset: 3px;
+/* ==========================================================
+   HEADER
+========================================================== */
+
+.header {
+    position: sticky;
+    top: 0;
+
+    z-index: 1000;
+
+    padding-block: 1rem;
 }
 
-.theme-dot {
-    width: 10px;
-    height: 10px;
-    border-radius: 50%;
-    background-color: gray;
+.header__container {
+    width: min(100% - 2rem, var(--container-width));
+
+    margin-inline: auto;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
 }
 
-.theme-modern .theme-dot {
-    background-color: turquoise;
+/* ==========================================================
+   BRAND
+========================================================== */
+
+.brand {
 }
 
-.theme-inferno .theme-dot {
-    background-color: crimson;
+.brand__link {
+    display: flex;
+
+    align-items: center;
+
+    gap: .75rem;
+
+    text-decoration: none;
 }
 
-.theme-neon .theme-dot {
-    background-color: violet;
+.brand__icon {
+    width: 2.75rem;
+
+    height: 2.75rem;
+
+    flex-shrink: 0;
+}
+
+.brand__name {
+    font-size: 1.5rem;
+
+    font-weight: 700;
+}
+
+/* ==========================================================
+   NAVIGATION
+========================================================== */
+
+.nav {
+    display: flex;
+
+    align-items: center;
+
+    gap: 2rem;
+}
+
+.nav__link {
+    position: relative;
+
+    text-decoration: none;
+
+    font-weight: 500;
+
+    transition: var(--transition-speed);
+}
+
+.nav__link--active {
 }
 
