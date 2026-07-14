@@ -142,6 +142,14 @@ svg {
     z-index: 1000;
 
     padding-block: 1rem;
+
+    background-color: var(--color-surface);
+
+    border-bottom: 1px solid var(--color-border);
+
+    transition:
+        background-color var(--transition-speed),
+        border-color var(--transition-speed);
 }
 
 .header__container {
@@ -154,6 +162,8 @@ svg {
     align-items: center;
 
     justify-content: space-between;
+
+    min-height: 4.5rem;
 }
 
 /* ==========================================================
@@ -202,13 +212,151 @@ svg {
 .nav__link {
     position: relative;
 
-    text-decoration: none;
+    padding-block: 0.5rem;
+
+    color: var(--color-text-secondary);
 
     font-weight: 500;
 
-    transition: var(--transition-speed);
+    transition:
+        color var(--transition-speed);
+}
+
+.nav__link::after {
+    content: "";
+
+    position: absolute;
+
+    right: 0;
+    bottom: 0;
+    left: 0;
+
+    height: 2px;
+
+    background-color: var(--color-accent);
+
+    transform: scaleX(0);
+
+    transform-origin: center;
+
+    transition:
+        transform var(--transition-speed),
+        background-color var(--transition-speed);
+}
+
+.nav__link:hover {
+    color: var(--color-text-primary);
+}
+
+.nav__link:hover::after {
+    transform: scaleX(1);
 }
 
 .nav__link--active {
+    color: var(--color-text-primary);
+}
+
+.nav__link--active::after {
+    transform: scaleX(1);
+}
+
+.nav__link:focus-visible {
+    outline: 2px solid var(--color-focus);
+
+    outline-offset: 0.35rem;
+
+    border-radius: 0.25rem;
+}
+
+/* ==========================================================
+   THEME
+========================================================== */
+
+.theme {
+    position: relative;
+}
+
+.theme__toggle {
+    display: flex;
+
+    align-items: center;
+
+    gap: .5rem;
+
+    padding: .75rem 1rem;
+
+    border: 1px solid var(--color-border);
+
+    border-radius: var(--border-radius);
+
+    background-color: var(--color-surface-elevated);
+
+    transition:
+        background-color var(--transition-speed),
+        border-color var(--transition-speed),
+        color var(--transition-speed);
+}
+
+.theme__toggle:hover {
+    border-color: var(--color-accent);
+
+    color: var(--color-accent);
+}
+
+.theme__toggle:focus-visible {
+    outline: 2px solid var(--color-focus);
+
+    outline-offset: .25rem;
+}
+
+.theme__toggle-icon {
+    font-size: .75rem;
+
+    transition:
+        transform var(--transition-speed);
+}
+
+.theme__menu {
+    position: absolute;
+
+    top: calc(100% + .5rem);
+
+    right: 0;
+
+    min-width: 12rem;
+
+    list-style: none;
+
+    border: 1px solid var(--color-border);
+
+    border-radius: var(--border-radius);
+
+    background-color: var(--color-surface-elevated);
+
+    overflow: hidden;
+}
+
+.theme__option {
+    width: 100%;
+
+    padding: .9rem 1rem;
+
+    text-align: left;
+
+    transition:
+        background-color var(--transition-speed),
+        color var(--transition-speed);
+}
+
+.theme__option:hover {
+    background-color: var(--color-accent);
+
+    color: var(--color-background);
+}
+
+.theme__option:focus-visible {
+    outline: 2px solid var(--color-focus);
+
+    outline-offset: -2px;
 }
 
