@@ -164,6 +164,7 @@
             aria-labelledby="hero-title"
         >
             <div class="hero__container">
+
                 <p class="hero__eyebrow">
                     Discover the music
                 </p>
@@ -190,287 +191,308 @@
                 >
                     Explore artists
                 </a>
-            </div>
-        </section>
-
-        <!-- =================================================
-             ARTIST SEARCH
-        ================================================== -->
-
-        <section
-            class="search"
-            aria-labelledby="search-title"
-        >
-            <div class="search__container">
-
-                <div class="search__heading">
-                    <p class="search__eyebrow">
-                        Find your next artist
-                    </p>
-
-                    <h2
-                        class="search__title"
-                        id="search-title"
-                    >
-                        Search the collection
-                    </h2>
-
-                    <p class="search__description">
-                        Start typing an artist name and choose a suggestion
-                        from the list.
-                    </p>
-                </div>
-
-                <form
-                    class="search__form"
-                    role="search"
-                >
-                    <div class="search__field">
-                        <label
-                            class="search__label"
-                            for="artist-search"
-                        >
-                            Search for an artist
-                        </label>
-
-                        <div class="search__control">
-                            <input
-                                class="search__input"
-                                id="artist-search"
-                                name="artist"
-                                type="search"
-                                placeholder="Type an artist name..."
-                                autocomplete="off"
-                                aria-autocomplete="list"
-                                aria-controls="artist-suggestions"
-                                aria-expanded="false"
-                            >
-
-                            <button
-                                class="search__clear"
-                                type="button"
-                                aria-label="Clear search"
-                                hidden
-                            >
-                                ×
-                            </button>
-                        </div>
-
-                        <ul
-                            class="search__suggestions"
-                            id="artist-suggestions"
-                            role="listbox"
-                            hidden
-                        >
-                        </ul>
-                    </div>
-
-                    <button
-                        class="search__submit"
-                        type="submit"
-                        disabled
-                    >
-                        View artist
-                    </button>
-                </form>
 
             </div>
         </section>
 
         <!-- =================================================
-            ARTIST EXPLORER
+             ARTIST EXPLORER
         ================================================== -->
 
         <section
-            class="artists"
-            id="artists"
-            aria-labelledby="artists-title"
+            class="explorer"
+            aria-label="Artist explorer"
         >
-            <div class="artists__container">
 
-                <div class="artists__header">
-                    <div class="artists__heading">
-                        <p class="artists__eyebrow">
-                            Browse the collection
+            <!-- =============================================
+                 ARTIST SEARCH
+            ============================================== -->
+
+            <section
+                class="search"
+                aria-labelledby="search-title"
+            >
+                <div class="search__container">
+
+                    <div class="search__heading">
+                        <p class="search__eyebrow">
+                            Find your next artist
                         </p>
 
                         <h2
-                            class="artists__title"
-                            id="artists-title"
+                            class="search__title"
+                            id="search-title"
                         >
-                            Featured artists
+                            Search the collection
                         </h2>
 
-                        <p class="artists__description">
-                            Refine the collection using the available filters.
+                        <p class="search__description">
+                            Start typing an artist name and choose a suggestion
+                            from the list.
                         </p>
                     </div>
 
+                    <form
+                        class="search__form"
+                        role="search"
+                    >
+                        <div class="search__field">
+                            <label
+                                class="search__label"
+                                for="artist-search"
+                            >
+                                Search for an artist
+                            </label>
+
+                            <div class="search__control">
+                                <input
+                                    class="search__input"
+                                    id="artist-search"
+                                    name="artist"
+                                    type="search"
+                                    placeholder="Type an artist name..."
+                                    autocomplete="off"
+                                    aria-autocomplete="list"
+                                    aria-controls="artist-suggestions"
+                                    aria-expanded="false"
+                                >
+
+                                <button
+                                    class="search__clear"
+                                    type="button"
+                                    aria-label="Clear search"
+                                    hidden
+                                >
+                                    ×
+                                </button>
+                            </div>
+
+                            <ul
+                                class="search__suggestions"
+                                id="artist-suggestions"
+                                role="listbox"
+                                hidden
+                            >
+                            </ul>
+                        </div>
+
+                        <button
+                            class="search__submit"
+                            type="submit"
+                            disabled
+                        >
+                            View artist
+                        </button>
+                    </form>
+
+                </div>
+            </section>
+
+            <!-- =============================================
+                 ARTIST RESULTS
+            ============================================== -->
+
+            <section
+                class="artists"
+                id="artists"
+                aria-labelledby="artists-title"
+            >
+                <div class="artists__container">
+
+                    <div class="artists__header">
+                        <div class="artists__heading">
+                            <p class="artists__eyebrow">
+                                Browse the collection
+                            </p>
+
+                            <h2
+                                class="artists__title"
+                                id="artists-title"
+                            >
+                                Featured artists
+                            </h2>
+
+                            <p class="artists__description">
+                                Refine the collection using the available filters.
+                            </p>
+                        </div>
+
+                        <div
+                            class="artists__count"
+                            aria-live="polite"
+                        >
+                            {{len .}} artists
+                        </div>
+                    </div>
+
+                    <!-- =====================================
+                         FILTERS
+                    ====================================== -->
+
+                    <form
+                        class="filters"
+                        aria-label="Filter artists"
+                    >
+                        <div class="filters__group">
+                            <label
+                                class="filters__label"
+                                for="creation-year"
+                            >
+                                Creation year
+                            </label>
+
+                            <select
+                                class="filters__select"
+                                id="creation-year"
+                                name="creation-year"
+                            >
+                                <option value="">
+                                    All years
+                                </option>
+                            </select>
+                        </div>
+
+                        <div class="filters__group">
+                            <label
+                                class="filters__label"
+                                for="first-album"
+                            >
+                                First album
+                            </label>
+
+                            <select
+                                class="filters__select"
+                                id="first-album"
+                                name="first-album"
+                            >
+                                <option value="">
+                                    All years
+                                </option>
+                            </select>
+                        </div>
+
+                        <button
+                            class="filters__reset"
+                            type="reset"
+                        >
+                            Reset filters
+                        </button>
+                    </form>
+
+                    <!-- =====================================
+                         ARTIST GRID
+                    ====================================== -->
+
                     <div
-                        class="artists__count"
+                        class="artists__grid"
                         aria-live="polite"
                     >
-                        {{len .}} artists
+                        {{range .}}
+                            <article class="artist-card">
+                                <a
+                                    class="artist-card__link"
+                                    href="/artist/{{.ID}}"
+                                    aria-label="View details for {{.Name}}"
+                                >
+                                    <div class="artist-card__image-wrapper">
+                                        <img
+                                            class="artist-card__image"
+                                            src="{{.Image}}"
+                                            alt="Promotional image of {{.Name}}"
+                                            loading="lazy"
+                                        >
+                                    </div>
+
+                                    <div class="artist-card__content">
+                                        <h3 class="artist-card__name">
+                                            {{.Name}}
+                                        </h3>
+
+                                        <dl class="artist-card__details">
+                                            <div class="artist-card__detail">
+                                                <dt class="artist-card__term">
+                                                    Formed
+                                                </dt>
+
+                                                <dd class="artist-card__value">
+                                                    {{.CreationDate}}
+                                                </dd>
+                                            </div>
+
+                                            <div class="artist-card__detail">
+                                                <dt class="artist-card__term">
+                                                    First album
+                                                </dt>
+
+                                                <dd class="artist-card__value">
+                                                    {{.FirstAlbum}}
+                                                </dd>
+                                            </div>
+                                        </dl>
+
+                                        <span
+                                            class="artist-card__action"
+                                            aria-hidden="true"
+                                        >
+                                            View artist
+
+                                            <span class="artist-card__arrow">
+                                                →
+                                            </span>
+                                        </span>
+                                    </div>
+                                </a>
+                            </article>
+                        {{end}}
                     </div>
+
+                    <p
+                        class="artists__empty"
+                        hidden
+                    >
+                        No artists match the selected filters.
+                    </p>
+
+                    <!-- =====================================
+                         PAGINATION
+                    ====================================== -->
+
+                    <nav
+                        class="pagination"
+                        aria-label="Artists pagination"
+                    >
+                        <button
+                            class="pagination__button"
+                            type="button"
+                            disabled
+                        >
+                            Previous
+                        </button>
+
+                        <ol class="pagination__list">
+                            <li>
+                                <button
+                                    class="pagination__page pagination__page--active"
+                                    type="button"
+                                    aria-current="page"
+                                >
+                                    1
+                                </button>
+                            </li>
+                        </ol>
+
+                        <button
+                            class="pagination__button"
+                            type="button"
+                            disabled
+                        >
+                            Next
+                        </button>
+                    </nav>
+
                 </div>
+            </section>
 
-                <form
-                    class="filters"
-                    aria-label="Filter artists"
-                >
-                    <div class="filters__group">
-                        <label
-                            class="filters__label"
-                            for="creation-year"
-                        >
-                            Creation year
-                        </label>
-
-                        <select
-                            class="filters__select"
-                            id="creation-year"
-                            name="creation-year"
-                        >
-                            <option value="">
-                                All years
-                            </option>
-                        </select>
-                    </div>
-
-                    <div class="filters__group">
-                        <label
-                            class="filters__label"
-                            for="first-album"
-                        >
-                            First album
-                        </label>
-
-                        <select
-                            class="filters__select"
-                            id="first-album"
-                            name="first-album"
-                        >
-                            <option value="">
-                                All years
-                            </option>
-                        </select>
-                    </div>
-
-                    <button
-                        class="filters__reset"
-                        type="reset"
-                    >
-                        Reset filters
-                    </button>
-                </form>
-
-                <div
-    class="artists__grid"
-    aria-live="polite"
->
-    {{range .}}
-        <article class="artist-card">
-            <a
-                class="artist-card__link"
-                href="/artist/{{.ID}}"
-                aria-label="View details for {{.Name}}"
-            >
-                <div class="artist-card__image-wrapper">
-                    <img
-                        class="artist-card__image"
-                        src="{{.Image}}"
-                        alt="Promotional image of {{.Name}}"
-                        loading="lazy"
-                    >
-                </div>
-
-                <div class="artist-card__content">
-                    <h3 class="artist-card__name">
-                        {{.Name}}
-                    </h3>
-
-                    <dl class="artist-card__details">
-                        <div class="artist-card__detail">
-                            <dt class="artist-card__term">
-                                Formed
-                            </dt>
-
-                            <dd class="artist-card__value">
-                                {{.CreationDate}}
-                            </dd>
-                        </div>
-
-                        <div class="artist-card__detail">
-                            <dt class="artist-card__term">
-                                First album
-                            </dt>
-
-                            <dd class="artist-card__value">
-                                {{.FirstAlbum}}
-                            </dd>
-                        </div>
-                    </dl>
-
-                    <span
-                        class="artist-card__action"
-                        aria-hidden="true"
-                    >
-                        View artist
-                        <span class="artist-card__arrow">
-                            →
-                        </span>
-                     </span>
-                  </div>
-                 </a>
-                 </article>
-                    {{end}}
-                </div>
-
-                <p
-                    class="artists__empty"
-                    hidden
-                >
-                    No artists match the selected filters.
-                </p>
-
-                <!-- =========================================
-                     PAGINATION
-                ========================================== -->
-
-                <nav
-                    class="pagination"
-                    aria-label="Artists pagination"
-                >
-                    <button
-                        class="pagination__button"
-                        type="button"
-                        disabled
-                    >
-                        Previous
-                    </button>
-
-                    <ol class="pagination__list">
-                        <li>
-                            <button
-                                class="pagination__page pagination__page--active"
-                                type="button"
-                                aria-current="page"
-                            >
-                                1
-                            </button>
-                        </li>
-                    </ol>
-
-                    <button
-                        class="pagination__button"
-                        type="button"
-                        disabled
-                    >
-                        Next
-                    </button>
-                </nav>
-
-            </div>
         </section>
 
     </main>
