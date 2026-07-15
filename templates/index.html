@@ -433,6 +433,43 @@
                     No artists match the selected filters.
                 </p>
 
+                <!-- =========================================
+                     PAGINATION
+                ========================================== -->
+
+                <nav
+                    class="pagination"
+                    aria-label="Artists pagination"
+                >
+                    <button
+                        class="pagination__button"
+                        type="button"
+                        disabled
+                    >
+                        Previous
+                    </button>
+
+                    <ol class="pagination__list">
+                        <li>
+                            <button
+                                class="pagination__page pagination__page--active"
+                                type="button"
+                                aria-current="page"
+                            >
+                                1
+                            </button>
+                        </li>
+                    </ol>
+
+                    <button
+                        class="pagination__button"
+                        type="button"
+                        disabled
+                    >
+                        Next
+                    </button>
+                </nav>
+
             </div>
         </section>
 
