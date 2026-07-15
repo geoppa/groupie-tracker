@@ -12,3 +12,20 @@ type Artist struct {
 	DatesURL     string   `json:"concertDates"`
 	RelationsURL string   `json:"relations"`
 }
+
+// Relation represents the outer wrapper structure returned by the /relation endpoint
+type Relation struct {
+	ID             int                 `json:"id"`
+	DatesLocations map[string][]string `json:"datesLocations"` // Maps city names to their respective event dates
+}
+
+// LocationIndex represents the top-level array container returned by the /locations endpoint
+type LocationIndex struct {
+	Index []LocationNode `json:"index"`
+}
+
+// LocationNode represents the specific locations assigned to a single band ID
+type LocationNode struct {
+	ID        int      `json:"id"`
+	Locations []string `json:"locations"`
+}

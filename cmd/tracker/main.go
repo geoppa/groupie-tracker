@@ -16,8 +16,12 @@ func main() {
 		fmt.Println("Error parsing templates:", err)
 		return
 	}
-
+	// Static Asset Routing
+	http.Handle("/static/", http.StripPrefix("/static/", http.FileServer(http.Dir("static"))))
+	// Dynamic URL Route Handling
 	http.HandleFunc("/", handlers.ArtistsHandler)
+	http.HandleFunc("/artist", handlers.ArtistDetailHandler)
+	http.HandleFunc("/search", handlers.SearchHandler) // Add this line
 
 	fmt.Println("Server starting on http://localhost:8080")
 	err = http.ListenAndServe(":8080", nil)

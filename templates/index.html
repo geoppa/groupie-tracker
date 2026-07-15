@@ -2,31 +2,33 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Groupie Tracker</title>
+    <title>Groupie Tracker - Artists</title>
     <style>
-        body { font-family: Arial, sans-serif; background-color: #f4f4f9; margin: 0; padding: 20px; }
-        h1 { text-align: center; color: #333; }
-        .container { display: flex; flex-wrap: wrap; justify-content: center; gap: 20px; }
-        .card { background: white; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); width: 200px; padding: 15px; text-align: center; }
-        .card img { width: 100%; border-radius: 4px; }
-        .card h3 { margin: 10px 0 5px 0; color: #222; }
-        .card p { font-size: 14px; color: #666; margin: 0; }
+        body { font-family: sans-serif; margin: 40px; background: #f4f4f4; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 20px; }
+        .card { background: white; padding: 15px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); text-align: center; }
+        img { max-width: 100%; border-radius: 4px; }
+        a { display: inline-block; margin-top: 10px; color: #0066cc; text-decoration: none; font-weight: bold; }
     </style>
 </head>
 <body>
 
-    <h1>🎤 Groupie Tracker 🎤</h1>
-    
-    <div class="container">
-        <!-- Loop through each artist passed from Go -->
+    <h1>Groupie Tracker - Artists</h1>
+    <form action="/search" method="GET" style="margin-bottom: 20px;">
+    <input type="text" name="q" placeholder="Search artists, members, locations..." required style="padding: 8px; width: 300px;">
+    <button type="submit" style="padding: 8px 15px;">Search</button>
+    <a href="/" style="margin-left: 10px; text-decoration: none; color: #555;">Clear</a>
+</form>
+
+    <div class="grid">
+        <!-- Iterating through []models.Artist -->
         {{range .}}
-        <div class="card">
-            <img src="{{.Image}}" alt="{{.Name}}">
-            <h3>{{.Name}}</h3>
-            <p>Created: {{.CreationDate}}</p>
-            <p>First Album: {{.FirstAlbum}}</p>
-        </div>
+            <div class="card">
+                <img src="{{.Image}}" alt="{{.Name}}">
+                <h3>{{.Name}}</h3>
+                <p>First Album: {{.FirstAlbum}}</p>
+                <a href="/artist?id={{.ID}}">View Details</a>
+            </div>
         {{end}}
     </div>
 
