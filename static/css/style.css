@@ -170,9 +170,6 @@ svg {
    BRAND
 ========================================================== */
 
-.brand {
-}
-
 .brand__link {
     display: flex;
 
@@ -1163,5 +1160,99 @@ svg {
     color: var(--color-text-secondary);
 
     text-align: center;
+}
+
+/* ==========================================================
+   GLOBAL ELEMENTS
+========================================================== */
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    min-height: 100vh;
+
+    font-family: var(--font-family);
+
+    background-color: var(--color-background);
+
+    color: var(--color-text-primary);
+
+    line-height: 1.5;
+
+    transition:
+        background-color var(--transition-speed),
+        color var(--transition-speed);
+}
+
+::selection {
+    background-color: var(--color-accent);
+
+    color: var(--color-background);
+}
+
+a {
+    color: inherit;
+
+    text-decoration: none;
+}
+
+button,
+input,
+select,
+textarea {
+    font: inherit;
+}
+
+:focus-visible {
+    scroll-margin: 1rem;
+}
+
+button {
+    color: inherit;
+
+    background: none;
+
+    border: none;
+
+    cursor: pointer;
+}
+
+button:disabled,
+select:disabled,
+input:disabled {
+    cursor: not-allowed;
+}
+
+img,
+svg {
+    display: block;
+
+    max-width: 100%;
+}
+
+section[id] {
+    scroll-margin-top: 7rem;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        scroll-behavior: auto !important;
+
+        transition-duration: 0.01ms !important;
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+    }
+}
+
+/* ==========================================================
+   RESPONSIVE
+========================================================== */
+
+@media (max-width: 900px) {
+
 }
 
