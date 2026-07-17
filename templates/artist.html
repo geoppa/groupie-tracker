@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{.Artist.Name}} - Profile</title>
+    <style>
+        body { font-family: sans-serif; margin: 40px; background: #f9f9f9; color: #333; }
+        .container { max-width: 800px; background: #fff; padding: 20px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+        .back-link { display: inline-block; margin-bottom: 20px; color: #0066cc; text-decoration: none; }
+        img { max-width: 300px; border-radius: 4px; }
+        ul { padding-left: 20px; }
+        .concert-box { background: #f0f0f0; padding: 15px; border-radius: 4px; margin-top: 20px; }
+        .location-title { font-weight: bold; color: #111; text-transform: uppercase; margin-top: 10px; }
+    </style>
+</head>
+<body>
+
+    <a href="/" class="back-link">&larr; Back to Artists List</a>
+
+    <div class="container">
+        <h1>{{.Artist.Name}}</h1>
+        <img src="{{.Artist.Image}}" alt="{{.Artist.Name}} profile image">
+
+        <h3>Information</h3>
+        <p><strong>Creation Date:</strong> {{.Artist.CreationDate}}</p>
+        <p><strong>First Album:</strong> {{.Artist.FirstAlbum}}</p>
+
+        <h3>Members</h3>
+        <ul>
+            {{range .Artist.Members}}
+                <li>{{.}}</li>
+            {{end}}
+        </ul>
+
+        <div class="concert-box">
+            <h3>Concert Dates & Locations</h3>
+            {{range $location, $dates := .Relations.DatesLocations}}
+                <div class="location-title">📍 {{$location}}</div>
+                <ul>
+                    {{range $dates}}
+                        <li>{{.}}</li>
+                    {{end}}
+                </ul>
+            {{else}}
+                <p>No upcoming concert relations found.</p>
+            {{end}}
+        </div>
+    </div>
+
+</body>
+</html>
