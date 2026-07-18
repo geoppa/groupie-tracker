@@ -32,6 +32,7 @@
 </head>
 
 <body>
+
     <!-- =====================================================
          HEADER
     ====================================================== -->
@@ -104,7 +105,9 @@
                     aria-expanded="false"
                     aria-controls="theme-menu"
                 >
-                    Theme
+                    <span>
+                        Theme
+                    </span>
 
                     <span
                         class="theme__toggle-icon"
@@ -115,14 +118,14 @@
                 </button>
 
                 <ul
-                    id="theme-menu"
                     class="theme__menu"
+                    id="theme-menu"
                     hidden
                 >
                     <li>
                         <button
-                            type="button"
                             class="theme__option"
+                            type="button"
                             data-theme="neon"
                         >
                             Neon
@@ -131,8 +134,8 @@
 
                     <li>
                         <button
-                            type="button"
                             class="theme__option"
+                            type="button"
                             data-theme="modern"
                         >
                             Modern
@@ -141,8 +144,8 @@
 
                     <li>
                         <button
-                            type="button"
                             class="theme__option"
+                            type="button"
                             data-theme="inferno"
                         >
                             Inferno
@@ -155,7 +158,7 @@
     </header>
 
     <!-- =====================================================
-         MAIN CONTENT
+         MAIN
     ====================================================== -->
 
     <main id="main-content">
@@ -170,92 +173,400 @@
         >
             <div class="hero__container">
 
-                <p class="hero__eyebrow">
-                    Discover the music
-                </p>
+                <div class="hero__content">
 
-                <h1
-                    class="hero__title"
-                    id="hero-title"
+                    <p class="hero__eyebrow">
+                        Music discovery platform
+                    </p>
+
+                    <h1
+                        class="hero__title"
+                        id="hero-title"
+                    >
+                        <span>
+                            Discover
+                        </span>
+
+                        <span class="hero__title-accent">
+                            the music
+                        </span>
+                    </h1>
+
+                    <p class="hero__description">
+                        Explore legendary artists, their members,
+                        formation history, albums and live performances
+                        around the world.
+                    </p>
+
+                    <div class="hero__actions">
+
+                        <a
+                            href="#artists"
+                            class="hero__cta hero__cta--primary"
+                        >
+                            <span>
+                                Explore artists
+                            </span>
+
+                            <span
+                                class="hero__cta-arrow"
+                                aria-hidden="true"
+                            >
+                                →
+                            </span>
+                        </a>
+
+                        <a
+                            href="#search"
+                            class="hero__cta hero__cta--secondary"
+                        >
+                            <span
+                                class="hero__cta-icon"
+                                aria-hidden="true"
+                            >
+                                ♫
+                            </span>
+
+                            <span>
+                                {{len .Artists}} artists
+                            </span>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div
+                    class="hero__visual"
+                    aria-hidden="true"
                 >
-                    Explore artists.
+                    <svg
+                        class="hero__art"
+                        viewBox="0 0 760 420"
+                        xmlns="http://www.w3.org/2000/svg"
+                        focusable="false"
+                    >
+                        <defs>
+                            <radialGradient
+                                id="record-surface"
+                                cx="50%"
+                                cy="50%"
+                                r="50%"
+                            >
+                                <stop
+                                    offset="0%"
+                                    stop-color="#272727"
+                                ></stop>
 
-                    <span class="hero__title-accent">
-                        Feel the rhythm.
-                    </span>
-                </h1>
+                                <stop
+                                    offset="48%"
+                                    stop-color="#111111"
+                                ></stop>
 
-                <p class="hero__description">
-                    Discover artists, explore their history and follow their
-                    musical journey around the world.
-                </p>
+                                <stop
+                                    offset="100%"
+                                    stop-color="#020202"
+                                ></stop>
+                            </radialGradient>
 
-                <a
-                    href="#artists"
-                    class="hero__cta"
-                >
-                    Explore artists
-                </a>
+                            <radialGradient
+                                id="record-highlight"
+                                cx="35%"
+                                cy="25%"
+                                r="75%"
+                            >
+                                <stop
+                                    offset="0%"
+                                    stop-color="#ffffff"
+                                    stop-opacity="0.14"
+                                ></stop>
+
+                                <stop
+                                    offset="45%"
+                                    stop-color="#ffffff"
+                                    stop-opacity="0.03"
+                                ></stop>
+
+                                <stop
+                                    offset="100%"
+                                    stop-color="#ffffff"
+                                    stop-opacity="0"
+                                ></stop>
+                            </radialGradient>
+
+                            <filter
+                                id="record-shadow"
+                                x="-50%"
+                                y="-50%"
+                                width="200%"
+                                height="200%"
+                            >
+                                <feDropShadow
+                                    dx="0"
+                                    dy="14"
+                                    stdDeviation="16"
+                                    flood-color="#000000"
+                                    flood-opacity="0.7"
+                                ></feDropShadow>
+                            </filter>
+
+                            <filter
+                                id="accent-glow"
+                                x="-100%"
+                                y="-100%"
+                                width="300%"
+                                height="300%"
+                            >
+                                <feGaussianBlur
+                                    stdDeviation="9"
+                                    result="blur"
+                                ></feGaussianBlur>
+
+                                <feMerge>
+                                    <feMergeNode in="blur"></feMergeNode>
+                                    <feMergeNode in="SourceGraphic"></feMergeNode>
+                                </feMerge>
+                            </filter>
+                        </defs>
+
+                        <g
+                            class="hero__equalizer"
+                            opacity="0.55"
+                        >
+                            <rect x="10" y="282" width="12" height="92" rx="5"></rect>
+                            <rect x="32" y="242" width="12" height="132" rx="5"></rect>
+                            <rect x="54" y="302" width="12" height="72" rx="5"></rect>
+                            <rect x="76" y="215" width="12" height="159" rx="5"></rect>
+                            <rect x="98" y="265" width="12" height="109" rx="5"></rect>
+                            <rect x="120" y="188" width="12" height="186" rx="5"></rect>
+                            <rect x="142" y="250" width="12" height="124" rx="5"></rect>
+                            <rect x="164" y="290" width="12" height="84" rx="5"></rect>
+                            <rect x="186" y="225" width="12" height="149" rx="5"></rect>
+                            <rect x="208" y="270" width="12" height="104" rx="5"></rect>
+                            <rect x="230" y="200" width="12" height="174" rx="5"></rect>
+                            <rect x="252" y="255" width="12" height="119" rx="5"></rect>
+                            <rect x="274" y="296" width="12" height="78" rx="5"></rect>
+                            <rect x="296" y="232" width="12" height="142" rx="5"></rect>
+                            <rect x="318" y="276" width="12" height="98" rx="5"></rect>
+                            <rect x="340" y="205" width="12" height="169" rx="5"></rect>
+                            <rect x="362" y="248" width="12" height="126" rx="5"></rect>
+                            <rect x="384" y="300" width="12" height="74" rx="5"></rect>
+                            <rect x="406" y="220" width="12" height="154" rx="5"></rect>
+                            <rect x="428" y="266" width="12" height="108" rx="5"></rect>
+                            <rect x="450" y="192" width="12" height="182" rx="5"></rect>
+                            <rect x="472" y="252" width="12" height="122" rx="5"></rect>
+                            <rect x="494" y="292" width="12" height="82" rx="5"></rect>
+                            <rect x="516" y="218" width="12" height="156" rx="5"></rect>
+                            <rect x="538" y="262" width="12" height="112" rx="5"></rect>
+                            <rect x="560" y="195" width="12" height="179" rx="5"></rect>
+                            <rect x="582" y="250" width="12" height="124" rx="5"></rect>
+                            <rect x="604" y="295" width="12" height="79" rx="5"></rect>
+                            <rect x="626" y="225" width="12" height="149" rx="5"></rect>
+                            <rect x="648" y="270" width="12" height="104" rx="5"></rect>
+                            <rect x="670" y="207" width="12" height="167" rx="5"></rect>
+                            <rect x="692" y="256" width="12" height="118" rx="5"></rect>
+                            <rect x="714" y="302" width="12" height="72" rx="5"></rect>
+                            <rect x="736" y="245" width="12" height="129" rx="5"></rect>
+                        </g>
+
+                        <g class="hero__music-notes">
+
+                            <text
+                                x="95"
+                                y="125"
+                                class="hero__music-note hero__music-note--large"
+                            >
+                                ♪
+                            </text>
+
+                            <text
+                                x="185"
+                                y="92"
+                                class="hero__music-note hero__music-note--tiny"
+                            >
+                                ♪
+                            </text>
+
+                            <text
+                                x="570"
+                                y="145"
+                                class="hero__music-note hero__music-note--tiny"
+                            >
+                                ♫
+                            </text>
+
+                            <text
+                                x="622"
+                                y="92"
+                                class="hero__music-note hero__music-note--small"
+                            >
+                                ♫
+                            </text>
+
+                            <text
+                                x="684"
+                                y="225"
+                                class="hero__music-note hero__music-note--medium"
+                            >
+                                ♪
+                            </text>
+
+                        </g>
+
+                        <g
+                            class="hero__vinyl"
+                            filter="url(#record-shadow)"
+                        >
+                            <circle
+                                cx="445"
+                                cy="205"
+                                r="158"
+                                fill="url(#record-surface)"
+                                class="hero__vinyl-outline"
+                            ></circle>
+
+                            <circle
+                                cx="445"
+                                cy="205"
+                                r="145"
+                                fill="none"
+                                class="hero__vinyl-groove"
+                            ></circle>
+
+                            <circle
+                                cx="445"
+                                cy="205"
+                                r="128"
+                                fill="none"
+                                class="hero__vinyl-groove"
+                            ></circle>
+
+                            <circle
+                                cx="445"
+                                cy="205"
+                                r="111"
+                                fill="none"
+                                class="hero__vinyl-groove"
+                            ></circle>
+
+                            <circle
+                                cx="445"
+                                cy="205"
+                                r="94"
+                                fill="none"
+                                class="hero__vinyl-groove"
+                            ></circle>
+
+                            <circle
+                                cx="445"
+                                cy="205"
+                                r="77"
+                                fill="none"
+                                class="hero__vinyl-groove"
+                            ></circle>
+
+                            <circle
+                                cx="445"
+                                cy="205"
+                                r="158"
+                                fill="url(#record-highlight)"
+                            ></circle>
+
+                            <circle
+                                cx="445"
+                                cy="205"
+                                r="55"
+                                class="hero__vinyl-label-glow"
+                                filter="url(#accent-glow)"
+                            ></circle>
+
+                            <circle
+                                cx="445"
+                                cy="205"
+                                r="48"
+                                class="hero__vinyl-label"
+                            ></circle>
+
+                            <circle
+                                cx="445"
+                                cy="205"
+                                r="7"
+                                class="hero__vinyl-hole"
+                            ></circle>
+
+                            <path
+                                class="hero__treble-clef"
+                                d="M450 158
+                                   C432 159 424 182 435 195
+                                   C443 204 462 201 463 188
+                                   C464 178 452 172 444 178
+                                   C437 184 441 194 449 195
+                                   C459 196 469 183 465 169
+                                   C459 151 436 150 428 170
+                                   C418 193 433 212 452 213
+                                   C472 214 483 199 482 182
+                                   M451 157
+                                   C447 183 447 209 449 239
+                                   C450 255 441 266 429 265
+                                   C418 264 412 254 417 246
+                                   C421 238 433 239 436 246"
+                            ></path>
+                        </g>
+                    </svg>
+                </div>
 
             </div>
         </section>
 
         <!-- =================================================
-             ARTIST EXPLORER
+             ARTISTS, SEARCH AND FILTERS
         ================================================== -->
 
         <section
-            class="explorer"
-            aria-label="Artist explorer"
+            class="artists"
+            id="artists"
+            aria-label="Search and browse artists"
         >
+            <div class="artists__container">
 
-            <!-- =============================================
-                 ARTIST SEARCH
-            ============================================== -->
-
-            <section
-                class="search"
-                aria-labelledby="search-title"
-            >
-                <div class="search__container">
-
-                    <div class="search__heading">
-                        <p class="search__eyebrow">
-                            Find your next artist
-                        </p>
-
-                        <h2
-                            class="search__title"
-                            id="search-title"
-                        >
-                            Search the collection
-                        </h2>
-
-                        <p class="search__description">
-                            Start typing an artist name and choose a suggestion
-                            from the list.
-                        </p>
-                    </div>
+                <div
+                    class="collection-controls"
+                    id="search"
+                >
+                    <p class="collection-controls__description">
+                        Explore the artist collection and use the controls
+                        to narrow down the results.
+                    </p>
 
                     <form
                         class="search__form"
+                        action="/search"
+                        method="get"
                         role="search"
                     >
                         <div class="search__field">
+
                             <label
                                 class="search__label"
                                 for="artist-search"
                             >
-                                Search for an artist
+                                Search artists
                             </label>
 
                             <div class="search__control">
+
+                                <span
+                                    class="search__icon"
+                                    aria-hidden="true"
+                                >
+                                    ⌕
+                                </span>
+
                                 <input
                                     class="search__input"
                                     id="artist-search"
-                                    name="artist"
+                                    name="q"
                                     type="search"
-                                    placeholder="Type an artist name..."
+                                    placeholder="Search artists or members..."
                                     autocomplete="off"
                                     aria-autocomplete="list"
                                     aria-controls="artist-suggestions"
@@ -270,6 +581,7 @@
                                 >
                                     ×
                                 </button>
+
                             </div>
 
                             <ul
@@ -277,8 +589,8 @@
                                 id="artist-suggestions"
                                 role="listbox"
                                 hidden
-                            >
-                            </ul>
+                            ></ul>
+
                         </div>
 
                         <button
@@ -286,58 +598,18 @@
                             type="submit"
                             disabled
                         >
-                            View artist
+                            <span>
+                                Search
+                            </span>
+
+                            <span aria-hidden="true">
+                                →
+                            </span>
                         </button>
                     </form>
 
-                </div>
-            </section>
+                    <div class="filters">
 
-            <!-- =============================================
-                 ARTIST RESULTS
-            ============================================== -->
-
-            <section
-                class="artists"
-                id="artists"
-                aria-labelledby="artists-title"
-            >
-                <div class="artists__container">
-
-                    <div class="artists__header">
-                        <div class="artists__heading">
-                            <p class="artists__eyebrow">
-                                Browse the collection
-                            </p>
-
-                            <h2
-                                class="artists__title"
-                                id="artists-title"
-                            >
-                                Featured artists
-                            </h2>
-
-                            <p class="artists__description">
-                                Refine the collection using the available filters.
-                            </p>
-                        </div>
-
-                        <div
-                            class="artists__count"
-                            aria-live="polite"
-                        >
-                            {{len .Artists}} artists
-                        </div>
-                    </div>
-
-                    <!-- =====================================
-                         FILTERS
-                    ====================================== -->
-
-                    <form
-                        class="filters"
-                        aria-label="Filter artists"
-                    >
                         <div class="filters__group">
                             <label
                                 class="filters__label"
@@ -362,7 +634,7 @@
                                 class="filters__label"
                                 for="first-album"
                             >
-                                First album
+                                First album year
                             </label>
 
                             <select
@@ -376,140 +648,324 @@
                             </select>
                         </div>
 
+                        <div class="filters__group">
+                            <label
+                                class="filters__label"
+                                for="artist-sort"
+                            >
+                                Sort artists
+                            </label>
+
+                            <select
+                                class="filters__select"
+                                id="artist-sort"
+                                name="artist-sort"
+                            >
+                                <option value="default">
+                                    Default order
+                                </option>
+
+                                <option value="name-ascending">
+                                    Name A–Z
+                                </option>
+
+                                <option value="name-descending">
+                                    Name Z–A
+                                </option>
+
+                                <option value="year-ascending">
+                                    Oldest first
+                                </option>
+
+                                <option value="year-descending">
+                                    Newest first
+                                </option>
+                            </select>
+                        </div>
+
                         <button
                             class="filters__reset"
-                            type="reset"
+                            type="button"
                         >
                             Reset filters
                         </button>
-                    </form>
 
-                    <!-- =====================================
-                         ARTIST GRID
-                    ====================================== -->
+                    </div>
+                </div>
 
-                    <div
-                        class="artists__grid"
-                        aria-live="polite"
-                    >
-                        {{range .Artists}}
-                            <article class="artist-card">
-                                <a
-                                    class="artist-card__link"
-                                    href="/artist?id={{.ID}}"
-                                    aria-label="View details for {{.Name}}"
-                                >
-                                    <div class="artist-card__image-wrapper">
-                                        <img
-                                            class="artist-card__image"
-                                            src="{{.Image}}"
-                                            alt="Promotional image of {{.Name}}"
-                                            loading="lazy"
-                                        >
-                                    </div>
+                <div
+                    class="artists__grid"
+                    aria-live="polite"
+                >
+                    {{range .Artists}}
 
-                                    <div class="artist-card__content">
+                        <article
+                            class="artist-card"
+                            data-artist-id="{{.ID}}"
+                            data-artist-name="{{.Name}}"
+                            data-creation-year="{{.CreationDate}}"
+                            data-first-album="{{.FirstAlbum}}"
+                        >
+                            <a
+                                class="artist-card__link"
+                                href="/artist?id={{.ID}}"
+                                aria-label="View details for {{.Name}}"
+                            >
+                                <div class="artist-card__image-wrapper">
+
+                                    <img
+                                        class="artist-card__image"
+                                        src="{{.Image}}"
+                                        alt="Promotional image of {{.Name}}"
+                                        loading="lazy"
+                                    >
+
+                                    <div
+                                        class="artist-card__image-overlay"
+                                        aria-hidden="true"
+                                    ></div>
+
+                                    <span class="artist-card__year">
+                                        {{.CreationDate}}
+                                    </span>
+
+                                </div>
+
+                                <div class="artist-card__content">
+
+                                    <div class="artist-card__heading">
+
                                         <h3 class="artist-card__name">
                                             {{.Name}}
                                         </h3>
 
-                                        <dl class="artist-card__details">
-                                            <div class="artist-card__detail">
-                                                <dt class="artist-card__term">
-                                                    Formed
-                                                </dt>
-
-                                                <dd class="artist-card__value">
-                                                    {{.CreationDate}}
-                                                </dd>
-                                            </div>
-
-                                            <div class="artist-card__detail">
-                                                <dt class="artist-card__term">
-                                                    First album
-                                                </dt>
-
-                                                <dd class="artist-card__value">
-                                                    {{.FirstAlbum}}
-                                                </dd>
-                                            </div>
-                                        </dl>
-
                                         <span
-                                            class="artist-card__action"
+                                            class="artist-card__arrow"
                                             aria-hidden="true"
                                         >
-                                            View artist
+                                            ↗
+                                        </span>
 
-                                            <span class="artist-card__arrow">
-                                                →
-                                            </span>
+                                    </div>
+
+                                    <dl class="artist-card__details">
+
+                                        <div class="artist-card__detail">
+                                            <dt class="artist-card__term">
+                                                Formed
+                                            </dt>
+
+                                            <dd class="artist-card__value">
+                                                {{.CreationDate}}
+                                            </dd>
+                                        </div>
+
+                                        <div class="artist-card__detail">
+                                            <dt class="artist-card__term">
+                                                First album
+                                            </dt>
+
+                                            <dd class="artist-card__value">
+                                                {{.FirstAlbum}}
+                                            </dd>
+                                        </div>
+
+                                        <div class="artist-card__detail">
+                                            <dt class="artist-card__term">
+                                                Members
+                                            </dt>
+
+                                            <dd class="artist-card__value">
+                                                {{len .Members}}
+                                            </dd>
+                                        </div>
+
+                                    </dl>
+
+                                    <div class="artist-card__action">
+                                        <span>
+                                            View artist
+                                        </span>
+
+                                        <span aria-hidden="true">
+                                            →
                                         </span>
                                     </div>
-                                </a>
-                            </article>
-                        {{end}}
-                    </div>
 
-                    <p
-                        class="artists__empty"
-                        hidden
+                                </div>
+                            </a>
+                        </article>
+
+                    {{else}}
+
+                        <div class="artists__server-empty">
+
+                            <span
+                                class="artists__empty-icon"
+                                aria-hidden="true"
+                            >
+                                ♫
+                            </span>
+
+                            <h3>
+                                No artists found
+                            </h3>
+
+                            <p>
+                                Try searching with another artist,
+                                member, year, album or location.
+                            </p>
+
+                            <a
+                                href="/"
+                                class="artists__empty-link"
+                            >
+                                Show all artists
+                            </a>
+
+                        </div>
+
+                    {{end}}
+                </div>
+
+                <div
+                    class="artists__empty"
+                    hidden
+                >
+                    <span
+                        class="artists__empty-icon"
+                        aria-hidden="true"
                     >
-                        No artists match the selected filters.
+                        ♫
+                    </span>
+
+                    <h3>
+                        No matching artists
+                    </h3>
+
+                    <p>
+                        No artists match the filters you selected.
                     </p>
 
-                    <!-- =====================================
-                         PAGINATION
-                    ====================================== -->
-
-                    <nav
-                        class="pagination"
-                        aria-label="Artists pagination"
+                    <button
+                        class="artists__empty-reset"
+                        type="button"
                     >
-                        <button
-                            class="pagination__button"
-                            type="button"
-                            disabled
-                        >
-                            Previous
-                        </button>
-
-                        <ol class="pagination__list">
-                            <li>
-                                <button
-                                    class="pagination__page pagination__page--active"
-                                    type="button"
-                                    aria-current="page"
-                                >
-                                    1
-                                </button>
-                            </li>
-                        </ol>
-
-                        <button
-                            class="pagination__button"
-                            type="button"
-                            disabled
-                        >
-                            Next
-                        </button>
-                    </nav>
-
+                        Reset filters
+                    </button>
                 </div>
-            </section>
 
+                <nav
+                    class="pagination"
+                    aria-label="Artists pagination"
+                >
+                    <button
+                        class="pagination__button pagination__button--previous"
+                        type="button"
+                        disabled
+                    >
+                        <span aria-hidden="true">
+                            ←
+                        </span>
+
+                        <span>
+                            Previous
+                        </span>
+                    </button>
+
+                    <ol class="pagination__list"></ol>
+
+                    <button
+                        class="pagination__button pagination__button--next"
+                        type="button"
+                        disabled
+                    >
+                        <span>
+                            Next
+                        </span>
+
+                        <span aria-hidden="true">
+                            →
+                        </span>
+                    </button>
+                </nav>
+
+            </div>
         </section>
 
         <!-- =================================================
-             ARTIST DATA
+             ABOUT
         ================================================== -->
+
+        <section
+            class="about"
+            id="about"
+            aria-labelledby="about-title"
+        >
+            <div class="about__container">
+
+                <div class="about__content">
+
+                    <p class="section-eyebrow">
+                        About the project
+                    </p>
+
+                    <h2
+                        class="section-title"
+                        id="about-title"
+                    >
+                        Music history in one place
+                    </h2>
+
+                    <p class="about__description">
+                        Groupie Tracker brings together artist information,
+                        band members, creation dates, first albums and concert
+                        history in one interactive music experience.
+                    </p>
+
+                </div>
+
+                <div class="about__stats">
+
+                    <article class="about__stat">
+                        <strong>
+                            {{len .Artists}}
+                        </strong>
+
+                        <span>
+                            Artists
+                        </span>
+                    </article>
+
+                    <article class="about__stat">
+                        <strong>
+                            3
+                        </strong>
+
+                        <span>
+                            Themes
+                        </span>
+                    </article>
+
+                    <article class="about__stat">
+                        <strong>
+                            1
+                        </strong>
+
+                        <span>
+                            Music universe
+                        </span>
+                    </article>
+
+                </div>
+
+            </div>
+        </section>
 
         <script
             id="artists-data"
             type="application/json"
-        >
-            {{.ArtistsJSON}}
-        </script>
+        >{{.ArtistsJSON}}</script>
 
     </main>
 
@@ -518,6 +974,140 @@
     ====================================================== -->
 
     <footer class="footer">
+        <div class="footer__container">
+
+            <div class="footer__main">
+
+                <div class="footer__brand-column">
+
+                    <a
+                        href="/"
+                        class="footer__brand"
+                        aria-label="Groupie Tracker home page"
+                    >
+                        <svg
+                            class="footer__brand-icon"
+                            viewBox="0 0 95.116 153.12"
+                            aria-hidden="true"
+                            focusable="false"
+                        >
+                            <path
+                                d="m51.688 5.25c-5.427-0.1409-11.774 12.818-11.563 24.375 0.049 3.52 1.16 10.659 2.781 19.625-10.223 10.581-22.094 21.44-22.094 35.688-0.163 13.057 7.817 29.692 26.75 29.532 2.906-0.02 5.521-0.38 7.844-1 1.731 9.49 2.882 16.98 2.875 20.44 0.061 13.64-17.86 14.99-18.719 7.15 3.777-0.13 6.782-3.13 6.782-6.84 0-3.79-3.138-6.88-7.032-6.88-2.141 0-4.049 0.94-5.343 2.41-0.03 0.03-0.065 0.06-0.094 0.09-0.292 0.31-0.538 0.68-0.781 1.1-0.798 1.35-1.316 3.29-1.344 6.06 0 11.42 28.875 18.77 28.875-3.75 0.045-3.03-1.258-10.72-3.156-20.41 20.603-7.45 15.427-38.04-3.531-38.184-1.47 0.015-2.887 0.186-4.25 0.532-1.08-5.197-2.122-10.241-3.032-14.876 7.199-7.071 13.485-16.224 13.344-33.093 0.022-12.114-4.014-21.828-8.312-21.969zm1.281 11.719c2.456-0.237 4.406 2.043 4.406 7.062 0.199 8.62-5.84 16.148-13.031 23.719-0.688-4.147-1.139-7.507-1.188-9.5 0.204-13.466 5.719-20.886 9.813-21.281zm-7.719 44.687c0.877 4.515 1.824 9.272 2.781 14.063-12.548 4.464-18.57 21.954-0.781 29.781-10.843-9.231-5.506-20.158 2.312-22.062 1.966 9.816 3.886 19.502 5.438 27.872-2.107 0.74-4.566 1.17-7.438 1.19-7.181 0-21.531-4.57-21.531-21.875 0-14.494 10.047-20.384 19.219-28.969zm6.094 21.469c0.313-0.019 0.652-0.011 0.968 0 13.063 0 17.99 20.745 4.688 27.375-1.655-8.32-3.662-17.86-5.656-27.375z"
+                                fill="none"
+                                stroke="currentColor"
+                                stroke-width="3"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                            ></path>
+                        </svg>
+
+                        <span>
+                            Groupie Tracker
+                        </span>
+                    </a>
+
+                    <p class="footer__description">
+                        Your guide to the world of music.
+                    </p>
+
+                </div>
+
+                <div class="footer__column">
+
+                    <h2 class="footer__heading">
+                        About
+                    </h2>
+
+                    <a href="#about">
+                        About Groupie Tracker
+                    </a>
+
+                    <a href="#artists">
+                        Artist collection
+                    </a>
+
+                </div>
+
+                <div class="footer__column">
+
+                    <h2 class="footer__heading">
+                        Links
+                    </h2>
+
+                    <a href="/">
+                        Home
+                    </a>
+
+                    <a href="#artists">
+                        Artists
+                    </a>
+
+                </div>
+
+                <div class="footer__column">
+
+                    <h2 class="footer__heading">
+                        Theme
+                    </h2>
+
+                    <div
+                        class="footer__themes"
+                        aria-label="Available website themes"
+                    >
+                        <span
+                            class="footer__theme-dot footer__theme-dot--modern"
+                            title="Modern theme"
+                        ></span>
+
+                        <span
+                            class="footer__theme-dot footer__theme-dot--inferno"
+                            title="Inferno theme"
+                        ></span>
+
+                        <span
+                            class="footer__theme-dot footer__theme-dot--neon"
+                            title="Neon theme"
+                        ></span>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="footer__bottom">
+
+                <p>
+                    © 2026 Groupie Tracker
+                </p>
+
+                <span aria-hidden="true">
+                    •
+                </span>
+
+                <p>
+                    Created by elgeorgiou and gpapadaki
+                </p>
+
+                <span aria-hidden="true">
+                    •
+                </span>
+
+                <p>
+                    Built with Go
+                </p>
+
+                <span aria-hidden="true">
+                    •
+                </span>
+
+                <p>
+                    Data from Groupie Trackers API
+                </p>
+
+            </div>
+
+        </div>
     </footer>
+
 </body>
 </html>
