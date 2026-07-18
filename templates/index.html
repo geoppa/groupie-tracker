@@ -26,10 +26,9 @@
     ></script>
 
     <script
-    src="/static/js/search.js"
-    defer
+        src="/static/js/search.js"
+        defer
     ></script>
-
 </head>
 
 <body>
@@ -327,7 +326,7 @@
                             class="artists__count"
                             aria-live="polite"
                         >
-                            {{len .}} artists
+                            {{len .Artists}} artists
                         </div>
                     </div>
 
@@ -393,11 +392,11 @@
                         class="artists__grid"
                         aria-live="polite"
                     >
-                        {{range .}}
+                        {{range .Artists}}
                             <article class="artist-card">
                                 <a
                                     class="artist-card__link"
-                                    href="/artist/{{.ID}}"
+                                    href="/artist?id={{.ID}}"
                                     aria-label="View details for {{.Name}}"
                                 >
                                     <div class="artist-card__image-wrapper">
@@ -500,6 +499,17 @@
             </section>
 
         </section>
+
+        <!-- =================================================
+             ARTIST DATA
+        ================================================== -->
+
+        <script
+            id="artists-data"
+            type="application/json"
+        >
+            {{.ArtistsJSON}}
+        </script>
 
     </main>
 
