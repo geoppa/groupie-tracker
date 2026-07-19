@@ -1,52 +1,642 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="neon">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{.Artist.Name}} - Profile</title>
-    <style>
-        body { font-family: sans-serif; margin: 40px; background: #f9f9f9; color: #333; }
-        .container { max-width: 800px; background: #fff; padding: 20px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
-        .back-link { display: inline-block; margin-bottom: 20px; color: #0066cc; text-decoration: none; }
-        img { max-width: 300px; border-radius: 4px; }
-        ul { padding-left: 20px; }
-        .concert-box { background: #f0f0f0; padding: 15px; border-radius: 4px; margin-top: 20px; }
-        .location-title { font-weight: bold; color: #111; text-transform: uppercase; margin-top: 10px; }
-    </style>
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <meta
+        name="description"
+        content="Explore {{.Artist.Name}}, their members, albums and concert locations."
+    >
+
+    <title>{{.Artist.Name}} | Groupie Tracker</title>
+
+    <link
+        rel="stylesheet"
+        href="/static/css/style.css"
+    >
+
+    <link
+        rel="stylesheet"
+        href="/static/css/artist.css"
+    >
+
+    <script
+        src="/static/js/theme.js"
+        defer
+    ></script>
+
+    <script
+        src="/static/js/artist.js"
+        defer
+    ></script>
 </head>
+
 <body>
 
-    <a href="/" class="back-link">&larr; Back to Artists List</a>
+    <!-- =====================================================
+         HEADER
+    ====================================================== -->
 
-    <div class="container">
-        <h1>{{.Artist.Name}}</h1>
-        <img src="{{.Artist.Image}}" alt="{{.Artist.Name}} profile image">
+    <header class="header">
+        <div class="header__container">
 
-        <h3>Information</h3>
-        <p><strong>Creation Date:</strong> {{.Artist.CreationDate}}</p>
-        <p><strong>First Album:</strong> {{.Artist.FirstAlbum}}</p>
+            <div class="brand">
+                <a
+                    href="/"
+                    class="brand__link"
+                    aria-label="Groupie Tracker home page"
+                >
+                    <svg
+                        class="brand__icon"
+                        viewBox="0 0 95.116 153.12"
+                        aria-hidden="true"
+                        focusable="false"
+                    >
+                        <path
+                            d="m51.688 5.25c-5.427-0.1409-11.774 12.818-11.563 24.375 0.049 3.52 1.16 10.659 2.781 19.625-10.223 10.581-22.094 21.44-22.094 35.688-0.163 13.057 7.817 29.692 26.75 29.532 2.906-0.02 5.521-0.38 7.844-1 1.731 9.49 2.882 16.98 2.875 20.44 0.061 13.64-17.86 14.99-18.719 7.15 3.777-0.13 6.782-3.13 6.782-6.84 0-3.79-3.138-6.88-7.032-6.88-2.141 0-4.049 0.94-5.343 2.41-0.03 0.03-0.065 0.06-0.094 0.09-0.292 0.31-0.538 0.68-0.781 1.1-0.798 1.35-1.316 3.29-1.344 6.06 0 11.42 28.875 18.77 28.875-3.75 0.045-3.03-1.258-10.72-3.156-20.41 20.603-7.45 15.427-38.04-3.531-38.184-1.47 0.015-2.887 0.186-4.25 0.532-1.08-5.197-2.122-10.241-3.032-14.876 7.199-7.071 13.485-16.224 13.344-33.093 0.022-12.114-4.014-21.828-8.312-21.969zm1.281 11.719c2.456-0.237 4.406 2.043 4.406 7.062 0.199 8.62-5.84 16.148-13.031 23.719-0.688-4.147-1.139-7.507-1.188-9.5 0.204-13.466 5.719-20.886 9.813-21.281zm-7.719 44.687c0.877 4.515 1.824 9.272 2.781 14.063-12.548 4.464-18.57 21.954-0.781 29.781-10.843-9.231-5.506-20.158 2.312-22.062 1.966 9.816 3.886 19.502 5.438 27.872-2.107 0.74-4.566 1.17-7.438 1.19-7.181 0-21.531-4.57-21.531-21.875 0-14.494 10.047-20.384 19.219-28.969zm6.094 21.469c0.313-0.019 0.652-0.011 0.968 0 13.063 0 17.99 20.745 4.688 27.375-1.655-8.32-3.662-17.86-5.656-27.375z"
+                            fill="none"
+                            stroke="currentColor"
+                            stroke-width="3"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                        ></path>
+                    </svg>
 
-        <h3>Members</h3>
-        <ul>
-            {{range .Artist.Members}}
-                <li>{{.}}</li>
-            {{end}}
-        </ul>
+                    <span class="brand__name">
+                        Groupie Tracker
+                    </span>
+                </a>
+            </div>
 
-        <div class="concert-box">
-            <h3>Concert Dates & Locations</h3>
-            {{range $location, $dates := .Relations.DatesLocations}}
-                <div class="location-title">📍 {{$location}}</div>
-                <ul>
-                    {{range $dates}}
-                        <li>{{.}}</li>
-                    {{end}}
+            <nav
+                class="nav"
+                aria-label="Primary navigation"
+            >
+                <a
+                    href="/"
+                    class="nav__link"
+                >
+                    Home
+                </a>
+
+                <a
+                    href="/#artists"
+                    class="nav__link nav__link--active"
+                    aria-current="page"
+                >
+                    Artists
+                </a>
+
+                <a
+                    href="/#about"
+                    class="nav__link"
+                >
+                    About
+                </a>
+            </nav>
+
+            <div class="theme">
+                <button
+                    class="theme__toggle"
+                    type="button"
+                    id="theme-toggle"
+                    aria-label="Change website theme"
+                    aria-haspopup="true"
+                    aria-expanded="false"
+                    aria-controls="theme-menu"
+                >
+                    <span>
+                        Theme
+                    </span>
+
+                    <span
+                        class="theme__toggle-icon"
+                        aria-hidden="true"
+                    >
+                        ▼
+                    </span>
+                </button>
+
+                <ul
+                    class="theme__menu"
+                    id="theme-menu"
+                    hidden
+                >
+                    <li>
+                        <button
+                            class="theme__option"
+                            type="button"
+                            data-theme="neon"
+                        >
+                            Neon
+                        </button>
+                    </li>
+
+                    <li>
+                        <button
+                            class="theme__option"
+                            type="button"
+                            data-theme="modern"
+                        >
+                            Modern
+                        </button>
+                    </li>
+
+                    <li>
+                        <button
+                            class="theme__option"
+                            type="button"
+                            data-theme="inferno"
+                        >
+                            Inferno
+                        </button>
+                    </li>
                 </ul>
-            {{else}}
-                <p>No upcoming concert relations found.</p>
-            {{end}}
+            </div>
+
         </div>
-    </div>
+    </header>
+
+    <!-- =====================================================
+         MAIN
+    ====================================================== -->
+
+    <main class="artist-page">
+
+        <div class="artist-page__container">
+
+            <!-- Back link -->
+
+            <a
+                href="/#artists"
+                class="artist-page__back"
+            >
+                <span aria-hidden="true">
+                    ←
+                </span>
+
+                <span>
+                    Back to artists
+                </span>
+            </a>
+
+            <!-- =================================================
+                 ARTIST PROFILE
+            ================================================== -->
+
+            <section
+                class="artist-profile"
+                aria-labelledby="artist-name"
+            >
+
+                <!-- Real artist image from the API -->
+
+                <div class="artist-profile__media">
+                    <img
+                        class="artist-profile__image"
+                        src="{{.Artist.Image}}"
+                        alt="{{.Artist.Name}} profile image"
+                    >
+
+                    <div
+                        class="artist-profile__image-overlay"
+                        aria-hidden="true"
+                    ></div>
+                </div>
+
+                <!-- Artist information -->
+
+                <div class="artist-profile__content">
+
+                    <div class="artist-profile__heading">
+
+                        <p class="artist-profile__eyebrow">
+                            Artist profile
+                        </p>
+
+                        <h1
+                            class="artist-profile__name"
+                            id="artist-name"
+                        >
+                            {{.Artist.Name}}
+                        </h1>
+
+                        <p class="artist-profile__meta">
+                            <span>
+                                Music artist
+                            </span>
+
+                            <span
+                                class="artist-profile__meta-dot"
+                                aria-hidden="true"
+                            ></span>
+
+                            <span>
+                                Formed in {{.Artist.CreationDate}}
+                            </span>
+                        </p>
+
+                    </div>
+
+                    <div class="artist-profile__summary">
+
+                        <!-- First album -->
+
+                        <article
+                            class="artist-summary-card artist-summary-card--album"
+                        >
+                            <div
+                                class="artist-summary-card__icon"
+                                aria-hidden="true"
+                            >
+                                ◫
+                            </div>
+
+                            <div class="artist-summary-card__content">
+                                <h2 class="artist-summary-card__title">
+                                    First album
+                                </h2>
+
+                                <p class="artist-summary-card__value">
+                                    {{.Artist.FirstAlbum}}
+                                </p>
+                            </div>
+                        </article>
+
+                        <!-- Member count -->
+
+                        <article
+                            class="artist-summary-card artist-summary-card--members"
+                        >
+                            <div
+                                class="artist-summary-card__icon"
+                                aria-hidden="true"
+                            >
+                                ♟
+                            </div>
+
+                            <div class="artist-summary-card__content">
+                                <h2 class="artist-summary-card__title">
+                                    Member count
+                                </h2>
+
+                                <p class="artist-summary-card__value">
+                                    {{len .Artist.Members}}
+                                </p>
+                            </div>
+                        </article>
+
+                    </div>
+
+                </div>
+            </section>
+
+            <!-- =================================================
+                 ARTIST DETAILS
+            ================================================== -->
+
+            <section
+                class="artist-details"
+                aria-label="Artist members and concert history"
+            >
+
+                <!-- Members -->
+
+                <article class="artist-panel artist-panel--members">
+
+                    <header class="artist-panel__header">
+
+                        <span
+                            class="artist-panel__icon"
+                            aria-hidden="true"
+                        >
+                            ♟
+                        </span>
+
+                        <h2 class="artist-panel__title">
+                            Members
+                        </h2>
+
+                    </header>
+
+                    <ul class="members-list">
+                        {{range .Artist.Members}}
+
+                            <li class="members-list__item">
+
+                                <span
+                                    class="members-list__icon"
+                                    aria-hidden="true"
+                                >
+                                    ●
+                                </span>
+
+                                <span class="members-list__name">
+                                    {{.}}
+                                </span>
+
+                            </li>
+
+                        {{else}}
+
+                            <li class="members-list__empty">
+                                No member information available.
+                            </li>
+
+                        {{end}}
+                    </ul>
+
+                </article>
+
+                <!-- Concert dates and locations -->
+
+                <article class="artist-panel artist-panel--concerts">
+
+                    <header class="artist-panel__header">
+
+                        <span
+                            class="artist-panel__icon"
+                            aria-hidden="true"
+                        >
+                            ●
+                        </span>
+
+                        <h2 class="artist-panel__title">
+                            Concert dates &amp; locations
+                        </h2>
+
+                    </header>
+
+                    <div class="concert-list">
+
+                        {{range $location, $dates := .Relations.DatesLocations}}
+
+                            <article
+                                class="concert-location"
+                                data-location="{{$location}}"
+                            >
+                                <button
+                                    class="concert-location__toggle"
+                                    type="button"
+                                    aria-expanded="true"
+                                >
+                                    <span class="concert-location__heading">
+
+                                        <span
+                                            class="concert-location__pin"
+                                            aria-hidden="true"
+                                        >
+                                            ●
+                                        </span>
+
+                                        <span class="concert-location__name">
+                                            {{$location}}
+                                        </span>
+
+                                    </span>
+
+                                    <span
+                                        class="concert-location__arrow"
+                                        aria-hidden="true"
+                                    >
+                                       ⌄
+                                    </span>
+                                </button>
+
+                                <ul class="concert-location__dates">
+                                    {{range $dates}}
+
+                                        <li class="concert-location__date">
+                                            {{.}}
+                                        </li>
+
+                                    {{end}}
+                                </ul>
+                            </article>
+
+                        {{else}}
+
+                            <p class="concert-list__empty">
+                                No concert dates or locations are available.
+                            </p>
+
+                        {{end}}
+
+                    </div>
+                </article>
+
+            </section>
+
+            <!-- =================================================
+                 MAP
+            ================================================== -->
+
+            <section
+                class="tour-map"
+                aria-labelledby="tour-map-title"
+            >
+
+                <header class="tour-map__header">
+
+                    <span
+                        class="tour-map__icon"
+                        aria-hidden="true"
+                    >
+                        ●
+                    </span>
+
+                    <h2
+                        class="tour-map__title"
+                        id="tour-map-title"
+                    >
+                        Tour map
+                    </h2>
+
+                </header>
+
+                <div
+                    class="tour-map__canvas"
+                    id="tour-map"
+                    aria-label="Map showing the artist concert locations"
+                >
+                    <div class="tour-map__placeholder">
+
+                        <span
+                            class="tour-map__placeholder-icon"
+                            aria-hidden="true"
+                        >
+                            ◎
+                        </span>
+
+                        <p>
+                            Concert locations will appear here.
+                        </p>
+
+                    </div>
+                </div>
+
+                <div class="tour-map__legend">
+
+                    <span
+                        class="tour-map__legend-dot"
+                        aria-hidden="true"
+                    ></span>
+
+                    <span>
+                        Concert locations
+                    </span>
+
+                </div>
+
+            </section>
+
+        </div>
+    </main>
+
+    <!-- =====================================================
+         FOOTER
+    ====================================================== -->
+
+    <footer class="footer">
+        <div class="footer__container">
+
+            <div class="footer__main">
+
+                <div class="footer__brand-column">
+
+                    <a
+                        href="/"
+                        class="footer__brand"
+                        aria-label="Groupie Tracker home page"
+                    >
+                        <svg
+                            class="footer__brand-icon"
+                            viewBox="0 0 95.116 153.12"
+                            aria-hidden="true"
+                            focusable="false"
+                        >
+                            <path
+                                d="m51.688 5.25c-5.427-0.1409-11.774 12.818-11.563 24.375 0.049 3.52 1.16 10.659 2.781 19.625-10.223 10.581-22.094 21.44-22.094 35.688-0.163 13.057 7.817 29.692 26.75 29.532 2.906-0.02 5.521-0.38 7.844-1 1.731 9.49 2.882 16.98 2.875 20.44 0.061 13.64-17.86 14.99-18.719 7.15 3.777-0.13 6.782-3.13 6.782-6.84 0-3.79-3.138-6.88-7.032-6.88-2.141 0-4.049 0.94-5.343 2.41-0.03 0.03-0.065 0.06-0.094 0.09-0.292 0.31-0.538 0.68-0.781 1.1-0.798 1.35-1.316 3.29-1.344 6.06 0 11.42 28.875 18.77 28.875-3.75 0.045-3.03-1.258-10.72-3.156-20.41 20.603-7.45 15.427-38.04-3.531-38.184-1.47 0.015-2.887 0.186-4.25 0.532-1.08-5.197-2.122-10.241-3.032-14.876 7.199-7.071 13.485-16.224 13.344-33.093 0.022-12.114-4.014-21.828-8.312-21.969zm1.281 11.719c2.456-0.237 4.406 2.043 4.406 7.062 0.199 8.62-5.84 16.148-13.031 23.719-0.688-4.147-1.139-7.507-1.188-9.5 0.204-13.466 5.719-20.886 9.813-21.281zm-7.719 44.687c0.877 4.515 1.824 9.272 2.781 14.063-12.548 4.464-18.57 21.954-0.781 29.781-10.843-9.231-5.506-20.158 2.312-22.062 1.966 9.816 3.886 19.502 5.438 27.872-2.107 0.74-4.566 1.17-7.438 1.19-7.181 0-21.531-4.57-21.531-21.875 0-14.494 10.047-20.384 19.219-28.969zm6.094 21.469c0.313-0.019 0.652-0.011 0.968 0 13.063 0 17.99 20.745 4.688 27.375-1.655-8.32-3.662-17.86-5.656-27.375z"
+                                fill="none"
+                                stroke="currentColor"
+                                stroke-width="3"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                            ></path>
+                        </svg>
+
+                        <span>
+                            Groupie Tracker
+                        </span>
+                    </a>
+
+                    <p class="footer__description">
+                        Your guide to the world of music.
+                    </p>
+
+                </div>
+
+                <div class="footer__column">
+
+                    <h2 class="footer__heading">
+                        About
+                    </h2>
+
+                    <a href="/#about">
+                        About Groupie Tracker
+                    </a>
+
+                    <a href="/#artists">
+                        Artist collection
+                    </a>
+
+                </div>
+
+                <div class="footer__column">
+
+                    <h2 class="footer__heading">
+                        Links
+                    </h2>
+
+                    <a href="/">
+                        Home
+                    </a>
+
+                    <a href="/#artists">
+                        Artists
+                    </a>
+
+                </div>
+
+                <div class="footer__column">
+
+                    <h2 class="footer__heading">
+                        Theme
+                    </h2>
+
+                    <div
+                        class="footer__themes"
+                        aria-label="Available website themes"
+                    >
+                        <span
+                            class="footer__theme-dot footer__theme-dot--modern"
+                            title="Modern theme"
+                        ></span>
+
+                        <span
+                            class="footer__theme-dot footer__theme-dot--inferno"
+                            title="Inferno theme"
+                        ></span>
+
+                        <span
+                            class="footer__theme-dot footer__theme-dot--neon"
+                            title="Neon theme"
+                        ></span>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="footer__bottom">
+
+                <p>
+                    © 2026 Groupie Tracker
+                </p>
+
+                <span aria-hidden="true">
+                    •
+                </span>
+
+                <p>
+                    Built with Go
+                </p>
+
+                <span aria-hidden="true">
+                    •
+                </span>
+
+                <p>
+                    Data from Groupie Trackers API
+                </p>
+
+                <span aria-hidden="true">
+                    •
+                </span>
+
+                <p>
+                    Created by elgeorgiou and gpapadaki
+                </p>
+
+            </div>
+
+        </div>
+    </footer>
 
 </body>
 </html>
