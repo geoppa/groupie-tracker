@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="modern">
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <meta
+        name="description"
+        content="Groupie Tracker error page."
+    >
+
+    <title>
+        {{.StatusCode}} — {{.Title}} | Groupie Tracker
+    </title>
+
+    <link
+        rel="stylesheet"
+        href="/static/css/style.css"
+    >
+
+    <link
+        rel="stylesheet"
+        href="/static/css/error.css"
+    >
+
+    <script
+        src="/static/js/theme.js"
+        defer
+    ></script>
+
+    <script
+        src="/static/js/error.js"
+        defer
+    ></script>
+</head>
+
+<body class="error-body">
+
+    <!-- =====================================================
+         HEADER
+    ====================================================== -->
+
+    <header class="error-header">
+        <div class="error-header__container">
+
+            <a
+                href="/"
+                class="error-brand"
+                aria-label="Groupie Tracker home page"
+            >
+                <span
+                    class="error-brand__icon"
+                    aria-hidden="true"
+                >
+                    𝄞
+                </span>
+
+                <span class="error-brand__text">
+                    Groupie Tracker
+                </span>
+            </a>
+
+            <div class="theme">
+                <button
+                    type="button"
+                    class="theme__toggle"
+                    id="theme-toggle"
+                    aria-label="Change website theme"
+                    aria-haspopup="true"
+                    aria-expanded="false"
+                    aria-controls="theme-menu"
+                >
+                    Theme
+
+                    <span
+                        class="theme__toggle-icon"
+                        aria-hidden="true"
+                    >
+                        ▼
+                    </span>
+                </button>
+
+                <ul
+                    id="theme-menu"
+                    class="theme__menu"
+                    hidden
+                >
+                    <li>
+                        <button
+                            type="button"
+                            class="theme__option"
+                            data-theme="modern"
+                        >
+                            Modern
+                        </button>
+                    </li>
+
+                    <li>
+                        <button
+                            type="button"
+                            class="theme__option"
+                            data-theme="inferno"
+                        >
+                            Inferno
+                        </button>
+                    </li>
+
+                    <li>
+                        <button
+                            type="button"
+                            class="theme__option"
+                            data-theme="neon"
+                        >
+                            Neon
+                        </button>
+                    </li>
+                </ul>
+            </div>
+
+        </div>
+    </header>
+
+    <!-- =====================================================
+         ERROR PAGE
+    ====================================================== -->
+
+    <main
+        class="error-page"
+        data-status-code="{{.StatusCode}}"
+        data-error-key="{{.ErrorKey}}"
+    >
+
+        <!-- =================================================
+             THEME BACKGROUNDS
+        ================================================== -->
+
+        <div
+            class="error-scene"
+            aria-hidden="true"
+        >
+
+            <!-- Modern scene -->
+
+            <div class="error-scene__modern">
+
+                <div class="modern-scene__spotlight"></div>
+
+                <div
+                    class="modern-scene__ring modern-scene__ring--one"
+                ></div>
+
+                <div
+                    class="modern-scene__ring modern-scene__ring--two"
+                ></div>
+
+                <div
+                    class="modern-scene__ring modern-scene__ring--three"
+                ></div>
+
+                <div class="modern-scene__particles">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+
+                <div class="modern-scene__microphone">
+                    <img
+                        class="modern-scene__microphone-image"
+                        src="/static/images/modern-microphone.svg"
+                        alt=""
+                        aria-hidden="true"
+                    >
+                </div>
+
+            </div>
+
+            <!-- Inferno scene -->
+
+            <div class="error-scene__inferno">
+
+                <div class="inferno-scene__sky"></div>
+
+                <div class="inferno-scene__sun"></div>
+
+                <div
+                    class="inferno-scene__mountain inferno-scene__mountain--back"
+                ></div>
+
+                <div
+                    class="inferno-scene__mountain inferno-scene__mountain--middle"
+                ></div>
+
+                <div
+                    class="inferno-scene__mountain inferno-scene__mountain--front"
+                ></div>
+
+                <div
+                    class="inferno-scene__lava inferno-scene__lava--left"
+                ></div>
+
+                <div
+                    class="inferno-scene__lava inferno-scene__lava--center"
+                ></div>
+
+                <div
+                    class="inferno-scene__lava inferno-scene__lava--right"
+                ></div>
+
+                <div class="inferno-scene__embers">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+
+                <div
+                    class="inferno-scene__smoke inferno-scene__smoke--one"
+                ></div>
+
+                <div
+                    class="inferno-scene__smoke inferno-scene__smoke--two"
+                ></div>
+
+                <div
+                    class="inferno-scene__smoke inferno-scene__smoke--three"
+                ></div>
+
+            </div>
+
+            <!-- Neon scene -->
+
+            <div class="error-scene__neon">
+
+                <div class="neon-scene__glow"></div>
+
+                <div class="neon-scene__grid"></div>
+
+                <div class="neon-scene__horizon"></div>
+
+                <div class="neon-scene__portal">
+
+                    <span
+                        class="neon-scene__portal-ring neon-scene__portal-ring--one"
+                    ></span>
+
+                    <span
+                        class="neon-scene__portal-ring neon-scene__portal-ring--two"
+                    ></span>
+
+                    <span
+                        class="neon-scene__portal-ring neon-scene__portal-ring--three"
+                    ></span>
+
+                </div>
+
+                <div
+                    class="neon-scene__buildings neon-scene__buildings--left"
+                >
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+
+                <div
+                    class="neon-scene__buildings neon-scene__buildings--right"
+                >
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+
+                <div class="neon-scene__glitch-lines">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- =================================================
+             ERROR CONTENT
+        ================================================== -->
+
+        <section
+            class="error-content"
+            aria-labelledby="error-title"
+        >
+
+            <div class="error-content__eyebrow">
+
+                <span
+                    class="error-content__eyebrow-line"
+                    aria-hidden="true"
+                ></span>
+
+                <span>
+                    Signal interrupted
+                </span>
+
+                <span
+                    class="error-content__eyebrow-line"
+                    aria-hidden="true"
+                ></span>
+
+            </div>
+
+            <div
+                class="error-code"
+                data-error-code="{{.StatusCode}}"
+                aria-label="Error {{.StatusCode}}"
+            >
+                <span aria-hidden="true">
+                    {{.StatusCode}}
+                </span>
+            </div>
+
+            <h1
+                id="error-title"
+                class="error-title"
+            >
+                {{.Title}}
+            </h1>
+
+            <p
+                id="error-message"
+                class="error-message"
+                aria-live="polite"
+            >
+                {{.Message}}
+            </p>
+
+            <a
+                href="/"
+                class="error-action"
+            >
+                <span
+                    class="error-action__icon"
+                    aria-hidden="true"
+                >
+                    ←
+                </span>
+
+                <span>
+                    Return to the music
+                </span>
+            </a>
+
+        </section>
+
+        <!-- Decorative bottom label -->
+
+        <div
+            class="error-status"
+            aria-hidden="true"
+        >
+            <span class="error-status__dot"></span>
+
+            <span>
+                GROUPIE TRACKER SYSTEM
+            </span>
+
+            <span>
+                / ERROR {{.StatusCode}}
+            </span>
+        </div>
+
+    </main>
+
+</body>
+</html>
