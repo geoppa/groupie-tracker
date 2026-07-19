@@ -13,21 +13,31 @@ import (
 // SearchHandler evaluates queries against artist information.
 func SearchHandler(w http.ResponseWriter, r *http.Request) {
 	query := strings.TrimSpace(
-		strings.ToLower(r.URL.Query().Get("q")),
+		strings.ToLower(
+			r.URL.Query().Get("q"),
+		),
 	)
 
 	if query == "" {
-		http.Redirect(w, r, "/", http.StatusSeeOther)
+		http.Redirect(
+			w,
+			r,
+			"/",
+			http.StatusSeeOther,
+		)
 		return
 	}
 
 	allArtists, err := api.FetchArtists()
 	if err != nil {
 		fmt.Println("Search - Fetch Artists Error:", err)
-		http.Error(
+
+		renderError(
 			w,
-			"Internal Server Error",
 			http.StatusInternalServerError,
+			"search_failed",
+			"Internal Server Error",
+			"The search could not be completed.",
 		)
 		return
 	}
@@ -35,10 +45,13 @@ func SearchHandler(w http.ResponseWriter, r *http.Request) {
 	locationIndex, err := api.FetchLocations()
 	if err != nil {
 		fmt.Println("Search - Fetch Locations Error:", err)
-		http.Error(
+
+		renderError(
 			w,
-			"Internal Server Error",
 			http.StatusInternalServerError,
+			"search_failed",
+			"Internal Server Error",
+			"The search could not be completed.",
 		)
 		return
 	}
@@ -46,7 +59,8 @@ func SearchHandler(w http.ResponseWriter, r *http.Request) {
 	locationMap := make(map[int][]string)
 
 	for _, locationNode := range locationIndex.Index {
-		locationMap[locationNode.ID] = locationNode.Locations
+		locationMap[locationNode.ID] =
+			locationNode.Locations
 	}
 
 	var filteredArtists []models.Artist
@@ -56,7 +70,10 @@ func SearchHandler(w http.ResponseWriter, r *http.Request) {
 			strings.ToLower(artist.Name),
 			query,
 		) {
-			filteredArtists = append(filteredArtists, artist)
+			filteredArtists = append(
+				filteredArtists,
+				artist,
+			)
 			continue
 		}
 
@@ -64,7 +81,10 @@ func SearchHandler(w http.ResponseWriter, r *http.Request) {
 			strconv.Itoa(artist.CreationDate),
 			query,
 		) {
-			filteredArtists = append(filteredArtists, artist)
+			filteredArtists = append(
+				filteredArtists,
+				artist,
+			)
 			continue
 		}
 
@@ -72,7 +92,10 @@ func SearchHandler(w http.ResponseWriter, r *http.Request) {
 			strings.ToLower(artist.FirstAlbum),
 			query,
 		) {
-			filteredArtists = append(filteredArtists, artist)
+			filteredArtists = append(
+				filteredArtists,
+				artist,
+			)
 			continue
 		}
 
@@ -89,26 +112,33 @@ func SearchHandler(w http.ResponseWriter, r *http.Request) {
 		}
 
 		if memberMatch {
-			filteredArtists = append(filteredArtists, artist)
+			filteredArtists = append(
+				filteredArtists,
+				artist,
+			)
 			continue
 		}
 
 		locationMatch := false
 
-		locations, exists := locationMap[artist.ID]
+		locations, exists :=
+			locationMap[artist.ID]
+
 		if exists {
 			for _, location := range locations {
-				cleanLocation := strings.ReplaceAll(
-					location,
-					"-",
-					" ",
-				)
+				cleanLocation :=
+					strings.ReplaceAll(
+						location,
+						"-",
+						" ",
+					)
 
-				cleanLocation = strings.ReplaceAll(
-					cleanLocation,
-					"_",
-					" ",
-				)
+				cleanLocation =
+					strings.ReplaceAll(
+						cleanLocation,
+						"_",
+						" ",
+					)
 
 				if strings.Contains(
 					strings.ToLower(cleanLocation),
@@ -121,28 +151,49 @@ func SearchHandler(w http.ResponseWriter, r *http.Request) {
 		}
 
 		if locationMatch {
-			filteredArtists = append(filteredArtists, artist)
+			filteredArtists = append(
+				filteredArtists,
+				artist,
+			)
 		}
 	}
 
-	pageData, err := newIndexPageData(filteredArtists)
+	pageData, err :=
+		newIndexPageData(filteredArtists)
+
 	if err != nil {
-		fmt.Println("Search - Artist JSON Encoding Error:", err)
-		http.Error(
+		fmt.Println(
+			"Search - Artist JSON Encoding Error:",
+			err,
+		)
+
+		renderError(
 			w,
-			"Internal Server Error",
 			http.StatusInternalServerError,
+			"artist_data_failed",
+			"Internal Server Error",
+			"The search results could not be prepared.",
 		)
 		return
 	}
 
-	err = Tmpl.ExecuteTemplate(w, "index.html", pageData)
+	err = Tmpl.ExecuteTemplate(
+		w,
+		"index.html",
+		pageData,
+	)
 	if err != nil {
-		fmt.Println("Search Template Execution Error:", err)
-		http.Error(
+		fmt.Println(
+			"Search Template Execution Error:",
+			err,
+		)
+
+		renderError(
 			w,
-			"Internal Server Error",
 			http.StatusInternalServerError,
+			"template_failed",
+			"Internal Server Error",
+			"The page could not be prepared.",
 		)
 		return
 	}

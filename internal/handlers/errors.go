@@ -6,9 +6,10 @@ import (
 	"net/http"
 )
 
-// ErrorPageData contains the information displayed by error.html.
+// ErrorPageData contains the information required by error.html.
 type ErrorPageData struct {
 	StatusCode int
+	ErrorKey   string
 	Title      string
 	Message    string
 }
@@ -17,11 +18,13 @@ type ErrorPageData struct {
 func renderError(
 	w http.ResponseWriter,
 	statusCode int,
+	errorKey string,
 	title string,
 	message string,
 ) {
 	data := ErrorPageData{
 		StatusCode: statusCode,
+		ErrorKey:   errorKey,
 		Title:      title,
 		Message:    message,
 	}

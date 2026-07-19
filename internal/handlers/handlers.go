@@ -37,17 +37,26 @@ func newIndexPageData(artists []models.Artist) (IndexPageData, error) {
 // ArtistsHandler handles the main page route.
 func ArtistsHandler(w http.ResponseWriter, r *http.Request) {
 	if r.URL.Path != "/" {
-		http.NotFound(w, r)
+		renderError(
+			w,
+			http.StatusNotFound,
+			"page_not_found",
+			"Page Not Found",
+			"The requested page could not be found.",
+		)
 		return
 	}
 
 	artists, err := api.FetchArtists()
 	if err != nil {
 		fmt.Println("Fetch Artists Error:", err)
-		http.Error(
+
+		renderError(
 			w,
-			"Internal Server Error",
 			http.StatusInternalServerError,
+			"artists_fetch_failed",
+			"Internal Server Error",
+			"The artist collection could not be loaded.",
 		)
 		return
 	}
@@ -55,21 +64,38 @@ func ArtistsHandler(w http.ResponseWriter, r *http.Request) {
 	pageData, err := newIndexPageData(artists)
 	if err != nil {
 		fmt.Println("Artist JSON Encoding Error:", err)
-		http.Error(
+
+		renderError(
 			w,
-			"Internal Server Error",
 			http.StatusInternalServerError,
+			"artist_data_failed",
+			"Internal Server Error",
+			"The artist data could not be prepared.",
 		)
 		return
 	}
 
-	err = Tmpl.ExecuteTemplate(w, "index.html", pageData)
+	err = Tmpl.ExecuteTemplate(
+		w,
+		"index.html",
+		pageData,
+	)
 	if err != nil {
 		fmt.Println("Template Execution Error:", err)
-		http.Error(
+
+		/*
+			The response may already have started here.
+
+			For now, renderError is still our fallback.
+			Later, during testing, we can improve successful-page
+			rendering with a buffer as well.
+		*/
+		renderError(
 			w,
-			"Internal Server Error",
 			http.StatusInternalServerError,
+			"template_failed",
+			"Internal Server Error",
+			"The page could not be prepared.",
 		)
 		return
 	}
@@ -78,41 +104,65 @@ func ArtistsHandler(w http.ResponseWriter, r *http.Request) {
 // ArtistDetailHandler processes requests for a specific artist.
 func ArtistDetailHandler(w http.ResponseWriter, r *http.Request) {
 	idStr := r.URL.Query().Get("id")
+
 	if idStr == "" {
-		http.Error(
+		renderError(
 			w,
-			"Missing artist ID parameter",
 			http.StatusBadRequest,
+			"missing_artist_id",
+			"Bad Request",
+			"No artist was selected.",
 		)
 		return
 	}
 
 	id, err := strconv.Atoi(idStr)
 	if err != nil {
-		http.Error(
+		renderError(
 			w,
-			"Invalid artist ID format",
 			http.StatusBadRequest,
+			"invalid_artist_id",
+			"Bad Request",
+			"The artist identifier is invalid.",
+		)
+		return
+	}
+
+	if id <= 0 {
+		renderError(
+			w,
+			http.StatusBadRequest,
+			"invalid_artist_id",
+			"Bad Request",
+			"The artist identifier is invalid.",
 		)
 		return
 	}
 
 	artist, err := api.FetchArtistByID(id)
 	if err != nil {
-		http.Error(
+		fmt.Println("Fetch Artist Error:", err)
+
+		renderError(
 			w,
-			"Artist data not found",
 			http.StatusNotFound,
+			"artist_not_found",
+			"Artist Not Found",
+			"The requested artist could not be found.",
 		)
 		return
 	}
 
 	relation, err := api.FetchRelation(id)
 	if err != nil {
-		http.Error(
+		fmt.Println("Fetch Relation Error:", err)
+
+		renderError(
 			w,
-			"Failed to fetch concert relations",
 			http.StatusInternalServerError,
+			"relation_fetch_failed",
+			"Internal Server Error",
+			"The concert information could not be loaded.",
 		)
 		return
 	}
@@ -125,13 +175,20 @@ func ArtistDetailHandler(w http.ResponseWriter, r *http.Request) {
 		Relations: relation,
 	}
 
-	err = Tmpl.ExecuteTemplate(w, "artist.html", data)
+	err = Tmpl.ExecuteTemplate(
+		w,
+		"artist.html",
+		data,
+	)
 	if err != nil {
 		fmt.Println("Template Execution Error:", err)
-		http.Error(
+
+		renderError(
 			w,
-			"Internal Server Error",
 			http.StatusInternalServerError,
+			"template_failed",
+			"Internal Server Error",
+			"The page could not be prepared.",
 		)
 		return
 	}
