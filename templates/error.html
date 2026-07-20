@@ -40,10 +40,6 @@
 
 <body class="error-body">
 
-    <!-- =====================================================
-         HEADER
-    ====================================================== -->
-
     <header class="error-header">
         <div class="error-header__container">
 
@@ -124,26 +120,18 @@
         </div>
     </header>
 
-    <!-- =====================================================
-         ERROR PAGE
-    ====================================================== -->
-
     <main
         class="error-page"
         data-status-code="{{.StatusCode}}"
         data-error-key="{{.ErrorKey}}"
     >
 
-        <!-- =================================================
-             THEME BACKGROUNDS
-        ================================================== -->
-
         <div
             class="error-scene"
             aria-hidden="true"
         >
 
-            <!-- Modern scene -->
+            <!-- MODERN THEME -->
 
             <div class="error-scene__modern">
 
@@ -170,6 +158,21 @@
                     <span></span>
                 </div>
 
+                <div class="modern-scene__notes">
+                    <span>♪</span>
+                    <span>♫</span>
+                    <span>♩</span>
+                    <span>♪</span>
+                    <span>♫</span>
+                    <span>♬</span>
+                    <span>♩</span>
+                    <span>♪</span>
+                    <span>♫</span>
+                    <span>♬</span>
+                    <span>♩</span>
+                    <span>♪</span>
+                </div>
+
                 <div class="modern-scene__microphone">
                     <img
                         class="modern-scene__microphone-image"
@@ -181,39 +184,66 @@
 
             </div>
 
-            <!-- Inferno scene -->
+            <!-- INFERNO THEME -->
 
             <div class="error-scene__inferno">
 
-                <div class="inferno-scene__sky"></div>
+                <div class="inferno-scene__background"></div>
 
-                <div class="inferno-scene__sun"></div>
+                <div class="inferno-scene__haze"></div>
 
                 <div
-                    class="inferno-scene__mountain inferno-scene__mountain--back"
+                    class="inferno-scene__mountain inferno-scene__mountain--back-left"
                 ></div>
 
                 <div
-                    class="inferno-scene__mountain inferno-scene__mountain--middle"
+                    class="inferno-scene__mountain inferno-scene__mountain--back-right"
                 ></div>
 
                 <div
-                    class="inferno-scene__mountain inferno-scene__mountain--front"
+                    class="inferno-scene__mountain inferno-scene__mountain--front-left"
                 ></div>
 
                 <div
-                    class="inferno-scene__lava inferno-scene__lava--left"
+                    class="inferno-scene__mountain inferno-scene__mountain--front-right"
                 ></div>
 
-                <div
-                    class="inferno-scene__lava inferno-scene__lava--center"
-                ></div>
+                <div class="inferno-scene__ground"></div>
 
-                <div
-                    class="inferno-scene__lava inferno-scene__lava--right"
-                ></div>
+                <div class="inferno-scene__lava-river">
+
+                    <span
+                        class="inferno-scene__lava-section inferno-scene__lava-section--one"
+                    ></span>
+
+                    <span
+                        class="inferno-scene__lava-section inferno-scene__lava-section--two"
+                    ></span>
+
+                    <span
+                        class="inferno-scene__lava-section inferno-scene__lava-section--three"
+                    ></span>
+
+                    <span
+                        class="inferno-scene__lava-section inferno-scene__lava-section--four"
+                    ></span>
+
+                </div>
+
+                <div class="inferno-scene__cracks">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
 
                 <div class="inferno-scene__embers">
+                    <span></span>
+                    <span></span>
                     <span></span>
                     <span></span>
                     <span></span>
@@ -238,9 +268,10 @@
                     class="inferno-scene__smoke inferno-scene__smoke--three"
                 ></div>
 
-            </div>
+                <div class="inferno-scene__heat"></div>
 
-            <!-- Neon scene -->
+            </div>
+                        <!-- NEON THEME -->
 
             <div class="error-scene__neon">
 
@@ -292,10 +323,6 @@
             </div>
 
         </div>
-
-        <!-- =================================================
-             ERROR CONTENT
-        ================================================== -->
 
         <section
             class="error-content"
@@ -363,13 +390,11 @@
 
         </section>
 
-        <!-- Decorative bottom label -->
-
         <div
-            class="error-status"
+            class="error-system"
             aria-hidden="true"
         >
-            <span class="error-status__dot"></span>
+            <span class="error-system__dot"></span>
 
             <span>
                 GROUPIE TRACKER SYSTEM
