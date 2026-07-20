@@ -41,8 +41,8 @@ func renderError(
 
 		http.Error(
 			w,
-			http.StatusText(statusCode),
-			statusCode,
+			http.StatusText(http.StatusInternalServerError),
+			http.StatusInternalServerError,
 		)
 
 		return
