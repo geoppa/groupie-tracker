@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"html/template"
 	"net/http"
+	"os" // Required to read environment variables
 
 	"groupie-tracker/internal/handlers"
 )
@@ -32,9 +33,16 @@ func main() {
 	http.HandleFunc("/artist", handlers.ArtistDetailHandler)
 	http.HandleFunc("/search", handlers.SearchHandler)
 
-	fmt.Println("Server starting on http://localhost:8080")
+	// FIX: Dynamically fetch the port assigned by the hosting provider
+	port := os.Getenv("PORT")
+	if port == "" {
+		port = "8080" // Fallback for local development
+	}
 
-	err = http.ListenAndServe(":8080", nil)
+	fmt.Printf("Server starting on port %s...\n", port)
+
+	// FIX: Listen on the assigned dynamic port
+	err = http.ListenAndServe(":"+port, nil)
 	if err != nil {
 		fmt.Println("Error starting server:", err)
 	}
